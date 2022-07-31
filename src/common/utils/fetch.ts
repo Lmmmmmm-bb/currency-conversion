@@ -1,11 +1,13 @@
 import { IBaseResponse } from '../models';
 
+const baseUrl = 'https://api.exchangerate.host';
+
 type FetchQueryType = Record<string, string | number>;
 
 export async function getFetch<
   T extends FetchQueryType,
   R extends IBaseResponse = IBaseResponse
->(url: string, query?: T): Promise<R> {
+>(path: string, query?: T): Promise<R> {
   // concat query string
   const queryString = query
     ? `?${Object.entries(query)
@@ -13,7 +15,7 @@ export async function getFetch<
         .join('&')}`
     : '';
 
-  const response = await fetch(`${url}${queryString}`);
+  const response = await fetch(`${baseUrl}${path}${queryString}`);
 
   return response.json();
 }
