@@ -12,4 +12,4 @@ export const fetchLatest = async (
   return { success, base, date, rates };
 };
 
-export { ILatestResponse };
+export { ILatestResponse, ILatestOptions };
