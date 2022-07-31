@@ -1,8 +1,13 @@
 import { getFetch } from '@/common/utils';
-import { ISymbolsResponse, ISymbol, Response } from './types';
+import { ISymbolsResponse, ISymbol, Response, ISymbolsOptions } from './types';
 
-export const fetchSymbols = async (): Promise<Response> => {
-  const response = await getFetch<never, ISymbolsResponse>('/symbols');
+export const fetchSymbols = async (
+  options?: ISymbolsOptions
+): Promise<Response> => {
+  const response = await getFetch<ISymbolsOptions, ISymbolsResponse>(
+    '/symbols',
+    options
+  );
   const { success, symbols } = response;
   return { success, symbols };
 };

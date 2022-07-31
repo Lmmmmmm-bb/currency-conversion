@@ -1,4 +1,4 @@
-import { IBaseResponse, ISOCodeEnum } from '@/common/models';
+import { FormatType, IBaseResponse, ISOCodeEnum } from '@/common/models';
 
 export interface ILatestOptions {
   // `base`, the currency to convert from.
@@ -10,7 +10,7 @@ export interface ILatestOptions {
   // `places`, round numbers to decimal place.
   places?: number;
   // `format`, format output.
-  format?: 'xml' | 'csv' | 'tsv';
+  format?: FormatType;
   // TODO: `source` option field.
   // source?: string;
 }
