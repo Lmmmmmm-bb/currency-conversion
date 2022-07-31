@@ -2,7 +2,7 @@ import { IBaseResponse } from '../models';
 
 const baseUrl = 'https://api.exchangerate.host';
 
-type FetchQueryType = Record<string, string | number>;
+type FetchQueryType = Record<string, any>;
 
 export async function getFetch<
   T extends FetchQueryType,
