@@ -6,6 +6,6 @@ import styles from './index.module.scss';
 <template>
   <div :class="styles.wrapper">
     <div :class="styles.main">Hello</div>
-    <external-link :class="styles.socialLink" />
+    <external-link :class="styles.externalLink" />
   </div>
 </template>
