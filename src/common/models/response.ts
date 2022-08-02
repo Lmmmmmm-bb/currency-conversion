@@ -5,3 +5,5 @@ export interface IBaseResponse {
   };
   success: boolean;
 }
+
+export type OmitResponse<T extends IBaseResponse> = Omit<T, 'motd'>;

@@ -1,4 +1,9 @@
-import { FormatType, IBaseResponse, ISOCodeEnum } from '@/common/models';
+import {
+  FormatType,
+  IBaseResponse,
+  ISOCodeEnum,
+  OmitResponse
+} from '@/common/models';
 
 export interface ILatestOptions {
   // `base`, the currency to convert from.
@@ -23,4 +28,4 @@ export interface ILatestResponse extends IBaseResponse {
   };
 }
 
-export type Response = Omit<ILatestResponse, 'motd'>;
+export type Response = OmitResponse<ILatestResponse>;
