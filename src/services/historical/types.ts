@@ -1,4 +1,4 @@
-import { IBaseResponse, ISOCodeEnum } from '@/common/models';
+import { IBaseResponse, ISOCodeEnum, OmitResponse } from '@/common/models';
 import { ILatestOptions } from '..';
 
 // rename ILatestOptions to IHistoricalOptions
@@ -13,4 +13,4 @@ export interface IHistoricalResponse extends IBaseResponse {
   };
 }
 
-export type Response = Omit<IHistoricalResponse, 'motd'>;
+export type Response = OmitResponse<IHistoricalResponse>;

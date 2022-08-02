@@ -1,4 +1,9 @@
-import { FormatType, IBaseResponse, ISOCodeEnum } from '@/common/models';
+import {
+  FormatType,
+  IBaseResponse,
+  ISOCodeEnum,
+  OmitResponse
+} from '@/common/models';
 
 export interface ISymbol {
   code: ISOCodeEnum;
@@ -15,4 +20,4 @@ export interface ISymbolsResponse extends IBaseResponse {
   };
 }
 
-export type Response = Omit<ISymbolsResponse, 'motd'>;
+export type Response = OmitResponse<ISymbolsResponse>;
