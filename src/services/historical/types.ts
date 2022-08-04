@@ -1,8 +1,11 @@
-import { IBaseResponse, ISOCodeEnum, OmitResponse } from '@/common/models';
-import { ILatestOptions } from '..';
+import {
+  IBaseOptions,
+  IBaseResponse,
+  ISOCodeEnum,
+  OmitResponse
+} from '@/common/models';
 
-// rename ILatestOptions to IHistoricalOptions
-export type HistoricalOptionsType = ILatestOptions;
+export type HistoricalOptionsType = IBaseOptions;
 
 export interface IHistoricalResponse extends IBaseResponse {
   historical: boolean;

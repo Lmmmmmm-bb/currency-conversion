@@ -19,4 +19,4 @@ export const fetchHistorical = async (
   return { success, base, date, historical, rates };
 };
 
-export { HistoricalOptionsType, IHistoricalResponse };
+export { HistoricalOptionsType, Response as IHistoricalResponse };

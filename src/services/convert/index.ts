@@ -11,3 +11,5 @@ export const fetchConvert = async (
   const { success, historical, date, result, query, info } = response;
   return { success, historical, date, result, query, info };
 };
+
+export { IConvertOptions, Response as IConvertResponse };

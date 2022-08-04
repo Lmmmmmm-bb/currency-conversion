@@ -1,10 +1,10 @@
 import { getFetch } from '@/common/utils';
-import { ILatestOptions, ILatestResponse, Response } from './types';
+import { LatestOptionsType, ILatestResponse, Response } from './types';
 
 export const fetchLatest = async (
-  options?: ILatestOptions
+  options?: LatestOptionsType
 ): Promise<Response> => {
-  const response = await getFetch<ILatestOptions, ILatestResponse>(
+  const response = await getFetch<LatestOptionsType, ILatestResponse>(
     '/latest',
     options
   );
@@ -12,4 +12,4 @@ export const fetchLatest = async (
   return { success, base, date, rates };
 };
 
-export { ILatestResponse, ILatestOptions };
+export { Response as ILatestResponse, LatestOptionsType };

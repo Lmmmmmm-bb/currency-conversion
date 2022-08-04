@@ -1,7 +1,11 @@
-import { IBaseResponse, ISOCodeEnum, OmitResponse } from '@/common/models';
-import { ILatestOptions } from '..';
+import {
+  IBaseOptions,
+  IBaseResponse,
+  ISOCodeEnum,
+  OmitResponse
+} from '@/common/models';
 
-export interface IConvertOptions extends ILatestOptions {
+export interface IConvertOptions extends IBaseOptions {
   from: ISOCodeEnum;
   to: ISOCodeEnum;
 }
