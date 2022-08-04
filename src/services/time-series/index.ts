@@ -19,4 +19,4 @@ export const fetchTimeSeries = async (
   return { success, timeseries, base, startDate, endDate, rates };
 };
 
-export { ITimeSeriesResponse, ITimeSeriesOptions };
+export { Response as ITimeSeriesResponse, ITimeSeriesOptions };

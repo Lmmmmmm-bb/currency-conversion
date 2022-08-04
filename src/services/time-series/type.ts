@@ -1,7 +1,11 @@
-import { IBaseResponse, ISOCodeEnum, OmitResponse } from '@/common/models';
-import { ILatestOptions } from '../latest';
+import {
+  IBaseOptions,
+  IBaseResponse,
+  ISOCodeEnum,
+  OmitResponse
+} from '@/common/models';
 
-export interface ITimeSeriesOptions extends ILatestOptions {
+export interface ITimeSeriesOptions extends IBaseOptions {
   /**
    * @description format 'YYYY-MM-DD'
    * @type {string}
