@@ -12,4 +12,4 @@ export const fetchSymbols = async (
   return { success, symbols };
 };
 
-export { Response as ISymbolsResponse, ISymbol, ISymbolsOptions };
+export { ISymbol, ISymbolsOptions, Response as ISymbolsResponse };
