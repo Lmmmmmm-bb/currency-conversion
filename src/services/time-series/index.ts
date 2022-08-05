@@ -1,4 +1,4 @@
-import { getFetch } from '@/common/utils';
+import { getFetch } from '~/common/utils';
 import { ITimeSeriesOptions, ITimeSeriesResponse, Response } from './type';
 
 export const fetchTimeSeries = async (

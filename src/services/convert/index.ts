@@ -1,4 +1,4 @@
-import { getFetch } from '@/common/utils';
+import { getFetch } from '~/common/utils';
 import { IConvertOptions, IConvertResponse, Response } from './types';
 
 export const fetchConvert = async (

@@ -1,4 +1,4 @@
-import { IBaseResponse, ISOCodeEnum, OmitResponse } from '@/common/models';
+import { IBaseResponse, ISOCodeEnum, OmitResponse } from '~/common/models';
 import { ITimeSeriesOptions } from '..';
 
 export type FluctuationOptionsType = ITimeSeriesOptions;
