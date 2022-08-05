@@ -3,7 +3,7 @@ import {
   IBaseResponse,
   ISOCodeEnum,
   OmitResponse
-} from '@/common/models';
+} from '~/common/models';
 
 export interface ITimeSeriesOptions extends IBaseOptions {
   /**

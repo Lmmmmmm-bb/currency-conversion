@@ -1,4 +1,4 @@
-import { getFetch } from '@/common/utils';
+import { getFetch } from '~/common/utils';
 import { HistoricalOptionsType, IHistoricalResponse, Response } from './types';
 
 /**

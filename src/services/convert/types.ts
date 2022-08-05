@@ -3,7 +3,7 @@ import {
   IBaseResponse,
   ISOCodeEnum,
   OmitResponse
-} from '@/common/models';
+} from '~/common/models';
 
 export interface IConvertOptions extends IBaseOptions {
   from: ISOCodeEnum;

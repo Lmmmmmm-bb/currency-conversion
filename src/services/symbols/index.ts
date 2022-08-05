@@ -1,4 +1,4 @@
-import { getFetch } from '@/common/utils';
+import { getFetch } from '~/common/utils';
 import { ISymbolsResponse, ISymbolsOptions, ISymbol, Response } from './types';
 
 export const fetchSymbols = async (
