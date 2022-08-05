@@ -6,7 +6,7 @@ import {
 } from './types';
 
 export const fetchFluctuation = async (
-  options?: FluctuationOptionsType
+  options: FluctuationOptionsType
 ): Promise<Response> => {
   const response = await getFetch<FluctuationOptionsType, IFluctuationResponse>(
     '/fluctuation',

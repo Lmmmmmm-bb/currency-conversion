@@ -2,7 +2,7 @@ import { getFetch } from '@/common/utils';
 import { IConvertOptions, IConvertResponse, Response } from './types';
 
 export const fetchConvert = async (
-  options?: IConvertOptions
+  options: IConvertOptions
 ): Promise<Response> => {
   const response = await getFetch<IConvertOptions, IConvertResponse>(
     '/convert',
