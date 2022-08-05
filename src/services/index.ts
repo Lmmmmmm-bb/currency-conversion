@@ -3,3 +3,4 @@ export * from './latest';
 export * from './historical';
 export * from './convert';
 export * from './time-series';
+export * from './fluctuation';
