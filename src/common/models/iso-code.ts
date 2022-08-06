@@ -1,4 +1,7 @@
-// ISO Currency Code Enum
+/**
+ * ISO Currency Code Enum
+ * @example ISOCodeEnum.CNY = 'CNY'
+ */
 export enum ISOCodeEnum {
   AED = 'AED',
   AFN = 'AFN',

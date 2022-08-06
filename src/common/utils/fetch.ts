@@ -4,6 +4,12 @@ const baseUrl = 'https://api.exchangerate.host';
 
 type FetchQueryType = Record<string, any>;
 
+/**
+ * @description get fetch wrapper
+ * @param path fetch url path
+ * @param query fetch url query
+ * @returns {Promise<Response>}
+ */
 export async function getFetch<
   T extends FetchQueryType,
   R extends IBaseResponse = IBaseResponse

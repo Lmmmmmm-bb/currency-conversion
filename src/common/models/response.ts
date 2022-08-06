@@ -3,6 +3,11 @@ export interface IBaseResponse {
     msg: string;
     url: string;
   };
+  /**
+   * @type {boolean}
+   * @description true if the request was successful.
+   * @example true
+   */
   success: boolean;
 }
 

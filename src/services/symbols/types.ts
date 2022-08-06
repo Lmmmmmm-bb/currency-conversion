@@ -14,6 +14,9 @@ export interface ISymbolsOptions {
   format?: FormatType;
 }
 
+/**
+ * @extends {IBaseResponse}
+ */
 export interface ISymbolsResponse extends IBaseResponse {
   symbols: {
     [key in ISOCodeEnum]: ISymbol;
