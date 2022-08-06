@@ -6,16 +6,18 @@ import ExternalLink from '~/components/external-link';
 import { getLocalItem, setLocalItem, StorageKeyEnum } from '~/common/utils';
 import styles from './index.module.scss';
 
-const symbolList = ref<ISymbol[]>([]);
+const initSymbolList = getLocalItem(StorageKeyEnum.Symbols);
+
+const symbolList = ref<ISymbol[]>(
+  initSymbolList ? JSON.parse(initSymbolList) : []
+);
+
 onMounted(async () => {
-  const localSymbols = getLocalItem(StorageKeyEnum.Symbols);
-  if (!localSymbols) {
+  if (!initSymbolList) {
     const { symbols } = await fetchSymbols();
     const symbolsToArray = Object.values(symbols);
     setLocalItem(StorageKeyEnum.Symbols, JSON.stringify(symbolsToArray));
     symbolList.value = symbolsToArray;
-  } else {
-    symbolList.value = JSON.parse(localSymbols);
   }
 });
 </script>
