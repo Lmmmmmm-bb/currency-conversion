@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { multiply, divide } from 'mathjs';
-import { h, computed, defineProps, ref, onMounted, watch } from 'vue';
+import { h, computed, ref, onMounted, watch } from 'vue';
 import { NSpace, NSelect, NInputGroup, NInputNumber, NTooltip } from 'naive-ui';
 import { fetchLatest, ISymbol } from '~/services';
 import { ISOCodeEnum } from '~/common/models';
