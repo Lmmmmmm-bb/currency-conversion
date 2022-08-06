@@ -1,9 +1,18 @@
 <script setup lang="ts">
 import { multiply, divide } from 'mathjs';
+import { ArrowsHorizontal } from '@vicons/carbon';
 import { h, computed, ref, onMounted, watch } from 'vue';
-import { NSpace, NSelect, NInputGroup, NInputNumber, NTooltip } from 'naive-ui';
-import { fetchLatest, ISymbol } from '~/services';
+import {
+  NButton,
+  NSpace,
+  NSelect,
+  NInputGroup,
+  NInputNumber,
+  NTooltip,
+  NIcon
+} from 'naive-ui';
 import { ISOCodeEnum } from '~/common/models';
+import { fetchLatest, ISymbol } from '~/services';
 import styles from './index.module.scss';
 import { RenderOption, SelectOptionType } from './types';
 
@@ -69,10 +78,17 @@ watch(
     info.value.to.amount = multiply(info.value.from.amount, currentRate.value);
   }
 );
+
+const handleSwitchGroup = () => {
+  const { from, to } = info.value;
+  info.value.from = { ...to };
+  info.value.to = { ...from };
+  onFetchRates();
+};
 </script>
 
 <template>
-  <n-space size="large">
+  <n-space size="large" align="center">
     <n-input-group>
       <n-input-number
         :value="info.from.amount"
@@ -89,7 +105,13 @@ watch(
         :render-option="renderTooltipOption"
       />
     </n-input-group>
-
+    <n-button quaternary @click="handleSwitchGroup">
+      <template #icon>
+        <n-icon :size="24" color="#6e91aa">
+          <arrows-horizontal />
+        </n-icon>
+      </template>
+    </n-button>
     <n-input-group>
       <n-input-number
         :loading="isLoading"
