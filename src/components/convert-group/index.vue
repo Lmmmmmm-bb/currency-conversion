@@ -11,6 +11,7 @@ import {
   NTooltip,
   NIcon
 } from 'naive-ui';
+import { useTitle } from '~/common/hooks';
 import { ISOCodeEnum } from '~/common/models';
 import { fetchLatest, ISymbol } from '~/services';
 import styles from './index.module.scss';
@@ -19,6 +20,8 @@ import { RenderOption, SelectOptionType } from './types';
 const props = defineProps<{
   symbols: ISymbol[];
 }>();
+
+const htmlTitle = useTitle();
 
 const options = computed<SelectOptionType[]>(() =>
   props.symbols.map(({ code, description }) => ({
@@ -76,6 +79,13 @@ watch(
   async ([newFromCode], [oldFromCode]) => {
     newFromCode !== oldFromCode && (await onFetchRates());
     info.value.to.amount = multiply(info.value.from.amount, currentRate.value);
+  }
+);
+
+watch(
+  () => [info.value.from.code, info.value.to.code],
+  ([newFromCode, oldFromCode]) => {
+    htmlTitle.value = `1 ${newFromCode} to ${currentRate.value} ${oldFromCode}`;
   }
 );
 
