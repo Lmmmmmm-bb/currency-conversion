@@ -1,5 +1,10 @@
 import { getFetch } from '~/common/utils';
-import { ISymbolsResponse, ISymbolsOptions, ISymbol, Response } from './types';
+import type {
+  ISymbolsResponse,
+  ISymbolsOptions,
+  ISymbol,
+  Response
+} from './types';
 
 export const fetchSymbols = async (
   options?: ISymbolsOptions

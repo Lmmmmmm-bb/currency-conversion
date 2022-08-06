@@ -1,6 +1,6 @@
 import { ISOCodeEnum } from '~/common/models';
 import { getFetch } from '~/common/utils';
-import {
+import type {
   FluctuationOptionsType,
   ICamelCaseRateInfo,
   IFluctuationResponse,

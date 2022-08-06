@@ -16,7 +16,7 @@ export interface ISymbolsOptions {
 
 export interface ISymbolsResponse extends IBaseResponse {
   symbols: {
-    [key in ISOCodeEnum]: ISymbol[];
+    [key in ISOCodeEnum]: ISymbol;
   };
 }
 
