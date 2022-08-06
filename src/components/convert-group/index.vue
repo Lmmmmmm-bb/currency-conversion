@@ -115,7 +115,7 @@ const handleSwitchGroup = () => {
         :render-option="renderTooltipOption"
       />
     </n-input-group>
-    <n-button quaternary @click="handleSwitchGroup">
+    <n-button quaternary title="Switch Gourp" @click="handleSwitchGroup">
       <template #icon>
         <n-icon :size="24" color="#6e91aa">
           <arrows-horizontal />
