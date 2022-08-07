@@ -19,6 +19,7 @@ export const setLocalItem = (key: StorageKeyEnum, value: string) =>
  * @description get local storage by key.
  * @param key storage key
  * @returns {string} storage value
+ * @default ''
  */
 export const getLocalItem = (key: StorageKeyEnum) =>
   localStorage.getItem(key) ?? '';
