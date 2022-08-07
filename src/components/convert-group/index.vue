@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { multiply, divide } from 'mathjs';
 import { ArrowsHorizontal } from '@vicons/carbon';
-import { h, computed, ref, onMounted, watchEffect } from 'vue';
+import { h, computed, ref, onMounted, watchEffect, watch } from 'vue';
 import {
   NButton,
   NSpace,
@@ -88,8 +88,17 @@ const handleSwitchGroup = () => {
   const { from, to } = info.value;
   info.value.from = { ...to };
   info.value.to = { ...from };
-  onFetchRates();
 };
+
+watch(
+  () => [info.value.from.code, info.value.to.code],
+  async ([newFromCode], [oldFromCode]) => {
+    newFromCode !== oldFromCode && (await onFetchRates());
+    info.value.to.amount = numberRound(
+      multiply(info.value.from.amount, currentRate.value)
+    );
+  }
+);
 </script>
 
 <template>
