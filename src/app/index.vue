@@ -2,7 +2,7 @@
 import { onMounted, ref } from 'vue';
 import { NLoadingBarProvider } from 'naive-ui';
 import { fetchSymbols, ISymbol } from '~/services';
-import ConvertGroup from '~/components/convert-group';
+import Convert from '~/layouts/convert';
 import ExternalLink from '~/components/external-link';
 import { getLocalItem, setLocalItem, StorageKeyEnum } from '~/common/utils';
 import styles from './index.module.scss';
@@ -27,7 +27,7 @@ onMounted(async () => {
   <n-loading-bar-provider>
     <div :class="styles.wrapper">
       <div :class="styles.main">
-        <convert-group :symbols="symbolList" />
+        <convert :symbols="symbolList" />
       </div>
       <external-link :class="styles.externalLink" />
     </div>

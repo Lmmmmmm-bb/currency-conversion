@@ -2,22 +2,16 @@
 import { multiply, divide } from 'mathjs';
 import { ArrowsHorizontal } from '@vicons/carbon';
 import { h, computed, ref, onMounted, watchEffect, watch } from 'vue';
-import {
-  NButton,
-  NSpace,
-  NSelect,
-  NInputGroup,
-  NInputNumber,
-  NTooltip,
-  NIcon,
-  useLoadingBar
-} from 'naive-ui';
+import { NButton, NSpace, NTooltip, NIcon, useLoadingBar } from 'naive-ui';
 import { numberRound } from '~/common/utils';
 import { ISOCodeEnum } from '~/common/models';
 import { fetchLatest, ISymbol } from '~/services';
 import { useTitle, useSmallScreen } from '~/common/hooks';
+import ConvertInputGroup, {
+  RenderOption,
+  SelectOptionType
+} from '~/components/convert-input-group';
 import styles from './index.module.scss';
-import type { RenderOption, SelectOptionType } from './types';
 
 const props = defineProps<{
   symbols: ISymbol[];
@@ -103,23 +97,14 @@ watch(
 
 <template>
   <n-space size="large" align="center" :vertical="isSmallScreen">
-    <n-input-group>
-      <n-input-number
-        :value="info.from.amount"
-        size="large"
-        :placeholder="info.from.code"
-        :show-button="false"
-        @update:value="handleFromAmountChange"
-      />
-      <n-select
-        v-model:value="info.from.code"
-        :class="styles.selector"
-        :options="options"
-        size="large"
-        filterable
-        :render-option="renderTooltipOption"
-      />
-    </n-input-group>
+    <convert-input-group
+      v-model:select="info.from.code"
+      :input-value="info.from.amount"
+      :placeholder="info.from.code"
+      :options="options"
+      :render-option="renderTooltipOption"
+      @input-change="handleFromAmountChange"
+    />
     <n-button quaternary title="Switch Gourp" @click="handleSwitchGroup">
       <template #icon>
         <n-icon
@@ -130,22 +115,13 @@ watch(
         </n-icon>
       </template>
     </n-button>
-    <n-input-group>
-      <n-input-number
-        :value="info.to.amount"
-        size="large"
-        :placeholder="info.to.code"
-        :show-button="false"
-        @update:value="handleToAmountChange"
-      />
-      <n-select
-        v-model:value="info.to.code"
-        :class="styles.selector"
-        :options="options"
-        size="large"
-        filterable
-        :render-option="renderTooltipOption"
-      />
-    </n-input-group>
+    <convert-input-group
+      v-model:select="info.to.code"
+      :input-value="info.to.amount"
+      :placeholder="info.to.code"
+      :options="options"
+      :render-option="renderTooltipOption"
+      @input-change="handleToAmountChange"
+    />
   </n-space>
 </template>
