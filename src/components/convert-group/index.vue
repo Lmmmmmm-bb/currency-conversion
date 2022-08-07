@@ -105,6 +105,7 @@ const handleSwitchGroup = () => {
       <n-input-number
         :value="info.from.amount"
         size="large"
+        :placeholder="info.from.code"
         :show-button="false"
         @update:value="handleFromAmountChange"
       />
@@ -131,6 +132,7 @@ const handleSwitchGroup = () => {
       <n-input-number
         :value="info.to.amount"
         size="large"
+        :placeholder="info.to.code"
         :show-button="false"
         @update:value="handleToAmountChange"
       />
