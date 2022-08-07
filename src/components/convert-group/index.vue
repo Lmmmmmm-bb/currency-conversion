@@ -12,7 +12,7 @@ import {
   NIcon,
   useLoadingBar
 } from 'naive-ui';
-import { useTitle } from '~/common/hooks';
+import { useTitle, useSmallScreen } from '~/common/hooks';
 import { ISOCodeEnum } from '~/common/models';
 import { fetchLatest, ISymbol } from '~/services';
 import styles from './index.module.scss';
@@ -43,6 +43,7 @@ const renderTooltipOption: RenderOption = ({ node, option }) =>
   );
 
 const loadingBar = useLoadingBar();
+const isSmallScreen = useSmallScreen();
 const rates = ref<{ [key in ISOCodeEnum]: number }>();
 const info = ref({
   from: { code: ISOCodeEnum.CNY, amount: 100 },
@@ -99,7 +100,7 @@ const handleSwitchGroup = () => {
 </script>
 
 <template>
-  <n-space size="large" align="center">
+  <n-space size="large" align="center" :vertical="isSmallScreen">
     <n-input-group>
       <n-input-number
         :value="info.from.amount"
@@ -118,7 +119,10 @@ const handleSwitchGroup = () => {
     </n-input-group>
     <n-button quaternary title="Switch Gourp" @click="handleSwitchGroup">
       <template #icon>
-        <n-icon :size="24" color="#6e91aa">
+        <n-icon
+          :class="styles.icon"
+          :style="{ transform: `rotate(${isSmallScreen ? 90 : 0}deg)` }"
+        >
           <arrows-horizontal />
         </n-icon>
       </template>
