@@ -2,12 +2,18 @@
   width: max-content;
 }
 
-.selector {
-  width: 80px;
-}
-
 .icon {
   font-size: 24px;
   color: #6e91aa;
   transition: transform 0.3s ease-in-out;
+}
+
+.picker {
+  width: 200px;
+}
+
+.ellipsis {
+  max-width: 200px !important;
+  font-size: 14px;
+  font-weight: 500;
 }
