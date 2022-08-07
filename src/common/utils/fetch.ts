@@ -10,10 +10,13 @@ type FetchQueryType = Record<string, any>;
  * @param query fetch url query
  * @returns {Promise<Response>}
  */
-export async function getFetch<
+export const getFetch = async <
   T extends FetchQueryType,
   R extends IBaseResponse = IBaseResponse
->(path: string, query?: T): Promise<R> {
+>(
+  path: string,
+  query?: T
+): Promise<R> => {
   // concat query string
   const queryString = query
     ? `?${Object.entries(query)
@@ -24,4 +27,4 @@ export async function getFetch<
   const response = await fetch(`${BASE_URL}${path}${queryString}`);
 
   return response.json();
-}
+};

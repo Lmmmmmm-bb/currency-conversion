@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { multiply, divide } from 'mathjs';
 import { ArrowsHorizontal } from '@vicons/carbon';
-import { h, computed, ref, onMounted, watch } from 'vue';
+import { h, computed, ref, onMounted, watchEffect } from 'vue';
 import {
   NButton,
   NSpace,
@@ -12,6 +12,7 @@ import {
   NIcon,
   useLoadingBar
 } from 'naive-ui';
+import { numberRound } from '~/common/utils';
 import { ISOCodeEnum } from '~/common/models';
 import { fetchLatest, ISymbol } from '~/services';
 import { useTitle, useSmallScreen } from '~/common/hooks';
@@ -61,35 +62,27 @@ const onFetchRates = async () => {
 
 onMounted(async () => {
   await onFetchRates();
-  info.value.to.amount = multiply(info.value.from.amount, currentRate.value);
+  info.value.to.amount = numberRound(
+    multiply(info.value.from.amount, currentRate.value)
+  );
+});
+
+watchEffect(() => {
+  const { from, to } = info.value;
+  htmlTitle.value = `1 ${from.code} to ${currentRate.value} ${to.code}`;
 });
 
 const handleFromAmountChange = (amount: number | null) => {
   if (amount === null) return;
   info.value.from.amount = amount;
-  info.value.to.amount = multiply(amount, currentRate.value);
+  info.value.to.amount = numberRound(multiply(amount, currentRate.value));
 };
 
 const handleToAmountChange = (amount: number | null) => {
   if (amount === null) return;
   info.value.to.amount = amount;
-  info.value.from.amount = divide(amount, currentRate.value);
+  info.value.from.amount = numberRound(divide(amount, currentRate.value));
 };
-
-watch(
-  () => [info.value.from.code, info.value.to.code],
-  async ([newFromCode], [oldFromCode]) => {
-    newFromCode !== oldFromCode && (await onFetchRates());
-    info.value.to.amount = multiply(info.value.from.amount, currentRate.value);
-  }
-);
-
-watch(
-  () => [info.value.from.code, info.value.to.code],
-  ([newFromCode, oldFromCode]) => {
-    htmlTitle.value = `1 ${newFromCode} to ${currentRate.value} ${oldFromCode}`;
-  }
-);
 
 const handleSwitchGroup = () => {
   const { from, to } = info.value;
@@ -105,6 +98,7 @@ const handleSwitchGroup = () => {
       <n-input-number
         :value="info.from.amount"
         size="large"
+        :placeholder="info.from.code"
         :show-button="false"
         @update:value="handleFromAmountChange"
       />
@@ -131,6 +125,7 @@ const handleSwitchGroup = () => {
       <n-input-number
         :value="info.to.amount"
         size="large"
+        :placeholder="info.to.code"
         :show-button="false"
         @update:value="handleToAmountChange"
       />
