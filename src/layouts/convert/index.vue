@@ -1,25 +1,37 @@
 <script setup lang="ts">
+import dayjs from 'dayjs';
 import { multiply, divide } from 'mathjs';
 import { ArrowsHorizontal } from '@vicons/carbon';
 import { h, computed, ref, onMounted, watchEffect, watch } from 'vue';
-import { NButton, NSpace, NTooltip, NIcon, useLoadingBar } from 'naive-ui';
+import {
+  NButton,
+  NSpace,
+  NTooltip,
+  NIcon,
+  useLoadingBar,
+  NDatePicker,
+  NEllipsis,
+  useMessage,
+  MessageReactive
+} from 'naive-ui';
 import { numberRound } from '~/common/utils';
 import { ISOCodeEnum } from '~/common/models';
-import { fetchLatest, ISymbol } from '~/services';
 import { useTitle, useSmallScreen } from '~/common/hooks';
+import { fetchHistorical, fetchLatest, ISymbol } from '~/services';
 import ConvertInputGroup, {
   RenderOption,
   SelectOptionType
 } from '~/components/convert-input-group';
 import styles from './index.module.scss';
+import { disablePreviousDate } from './utils';
 
-const props = defineProps<{
-  symbols: ISymbol[];
-}>();
+const props = defineProps<{ symbols: ISymbol[] }>();
 
+const message = useMessage();
 const htmlTitle = useTitle();
 const loadingBar = useLoadingBar();
 const isSmallScreen = useSmallScreen();
+const messageInstances = ref<MessageReactive[]>([]);
 
 const options = computed<SelectOptionType[]>(() =>
   props.symbols.map(({ code, description }) => ({
@@ -46,13 +58,6 @@ const info = ref({
 });
 
 const currentRate = computed(() => rates.value?.[info.value.to.code] ?? 0);
-
-const onFetchRates = async () => {
-  loadingBar.start();
-  const response = await fetchLatest({ base: info.value.from.code });
-  rates.value = response.rates;
-  loadingBar.finish();
-};
 
 onMounted(async () => {
   await onFetchRates();
@@ -93,35 +98,101 @@ watch(
     );
   }
 );
+
+const selectDate = ref(dayjs().valueOf());
+// record latest selected date, unfetch if date not changed
+const selectDateRef = ref(selectDate.value);
+
+async function onFetchRates() {
+  loadingBar.start();
+  const base = info.value.from.code;
+  const today = dayjs().format('YYYY-MM-DD');
+  const selectedDay = dayjs(selectDate.value).format('YYYY-MM-DD');
+  const type = selectedDay === today ? 'latest' : 'historical';
+  const response = await (type === 'latest'
+    ? fetchLatest({ base })
+    : fetchHistorical(selectedDay, { base }));
+  rates.value = response.rates;
+  selectDateRef.value = selectDate.value;
+  loadingBar.finish();
+}
+
+const handleDateChange = () => {
+  if (selectDate.value === selectDateRef.value) {
+    // if message instance has 3 instances, remove the first one
+    messageInstances.value.length === 3 &&
+      messageInstances.value.shift()?.destroy();
+    const instance = message.success('Rate already up to date');
+    messageInstances.value.push(instance);
+    return;
+  }
+  onFetchRates();
+};
+
+watch(
+  () => rates.value,
+  () => {
+    info.value.to.amount = numberRound(
+      multiply(info.value.from.amount, currentRate.value)
+    );
+  }
+);
 </script>
 
 <template>
-  <n-space size="large" align="center" :vertical="isSmallScreen">
-    <convert-input-group
-      v-model:select="info.from.code"
-      :input-value="info.from.amount"
-      :placeholder="info.from.code"
-      :options="options"
-      :render-option="renderTooltipOption"
-      @input-change="handleFromAmountChange"
-    />
-    <n-button quaternary title="Switch Gourp" @click="handleSwitchGroup">
-      <template #icon>
-        <n-icon
-          :class="styles.icon"
-          :style="{ transform: `rotate(${isSmallScreen ? 90 : 0}deg)` }"
+  <n-space vertical>
+    <n-space
+      justify="space-between"
+      :align="isSmallScreen ? 'start' : 'center'"
+      :vertical="isSmallScreen"
+    >
+      <n-ellipsis :class="styles.ellipsis">
+        {{ `1 ${info.from.code} ≈ ${currentRate} ${info.to.code}` }}
+      </n-ellipsis>
+      <n-space :size="19">
+        <n-date-picker
+          v-model:value="selectDate"
+          :class="styles.picker"
+          size="small"
+          :is-date-disabled="disablePreviousDate"
+        />
+        <n-button
+          size="small"
+          type="primary"
+          quaternary
+          @click="handleDateChange"
         >
-          <arrows-horizontal />
-        </n-icon>
-      </template>
-    </n-button>
-    <convert-input-group
-      v-model:select="info.to.code"
-      :input-value="info.to.amount"
-      :placeholder="info.to.code"
-      :options="options"
-      :render-option="renderTooltipOption"
-      @input-change="handleToAmountChange"
-    />
+          Query
+        </n-button>
+      </n-space>
+    </n-space>
+    <n-space size="large" align="center" :vertical="isSmallScreen">
+      <convert-input-group
+        v-model:select="info.from.code"
+        :options="options"
+        :placeholder="info.from.code"
+        :input-value="info.from.amount"
+        :render-option="renderTooltipOption"
+        @input-change="handleFromAmountChange"
+      />
+      <n-button quaternary title="Switch Gourp" @click="handleSwitchGroup">
+        <template #icon>
+          <n-icon
+            :class="styles.icon"
+            :style="{ transform: `rotate(${isSmallScreen ? 90 : 0}deg)` }"
+          >
+            <arrows-horizontal />
+          </n-icon>
+        </template>
+      </n-button>
+      <convert-input-group
+        v-model:select="info.to.code"
+        :options="options"
+        :placeholder="info.to.code"
+        :input-value="info.to.amount"
+        :render-option="renderTooltipOption"
+        @input-change="handleToAmountChange"
+      />
+    </n-space>
   </n-space>
 </template>
