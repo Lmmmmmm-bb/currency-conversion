@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { multiply, divide } from 'mathjs';
+import { multiply, divide, round } from 'mathjs';
 import { ArrowsHorizontal } from '@vicons/carbon';
-import { h, computed, ref, onMounted, watch } from 'vue';
+import { h, computed, ref, onMounted, watch, watchEffect } from 'vue';
 import {
   NButton,
   NSpace,
@@ -61,19 +61,27 @@ const onFetchRates = async () => {
 
 onMounted(async () => {
   await onFetchRates();
-  info.value.to.amount = multiply(info.value.from.amount, currentRate.value);
+  info.value.to.amount = round(
+    multiply(info.value.from.amount, currentRate.value),
+    2
+  );
+});
+
+watchEffect(() => {
+  const { from, to } = info.value;
+  htmlTitle.value = `1 ${from.code} to ${currentRate.value} ${to.code}`;
 });
 
 const handleFromAmountChange = (amount: number | null) => {
   if (amount === null) return;
   info.value.from.amount = amount;
-  info.value.to.amount = multiply(amount, currentRate.value);
+  info.value.to.amount = round(multiply(amount, currentRate.value), 2);
 };
 
 const handleToAmountChange = (amount: number | null) => {
   if (amount === null) return;
   info.value.to.amount = amount;
-  info.value.from.amount = divide(amount, currentRate.value);
+  info.value.from.amount = round(divide(amount, currentRate.value), 2);
 };
 
 watch(
@@ -81,13 +89,6 @@ watch(
   async ([newFromCode], [oldFromCode]) => {
     newFromCode !== oldFromCode && (await onFetchRates());
     info.value.to.amount = multiply(info.value.from.amount, currentRate.value);
-  }
-);
-
-watch(
-  () => [info.value.from.code, info.value.to.code],
-  ([newFromCode, oldFromCode]) => {
-    htmlTitle.value = `1 ${newFromCode} to ${currentRate.value} ${oldFromCode}`;
   }
 );
 
