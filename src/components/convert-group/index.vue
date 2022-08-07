@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { multiply, divide, round } from 'mathjs';
+import { multiply, divide } from 'mathjs';
 import { ArrowsHorizontal } from '@vicons/carbon';
 import { h, computed, ref, onMounted, watch, watchEffect } from 'vue';
 import {
@@ -12,6 +12,7 @@ import {
   NIcon,
   useLoadingBar
 } from 'naive-ui';
+import { numberRound } from '~/common/utils';
 import { ISOCodeEnum } from '~/common/models';
 import { fetchLatest, ISymbol } from '~/services';
 import { useTitle, useSmallScreen } from '~/common/hooks';
@@ -61,9 +62,8 @@ const onFetchRates = async () => {
 
 onMounted(async () => {
   await onFetchRates();
-  info.value.to.amount = round(
-    multiply(info.value.from.amount, currentRate.value),
-    2
+  info.value.to.amount = numberRound(
+    multiply(info.value.from.amount, currentRate.value)
   );
 });
 
@@ -75,20 +75,22 @@ watchEffect(() => {
 const handleFromAmountChange = (amount: number | null) => {
   if (amount === null) return;
   info.value.from.amount = amount;
-  info.value.to.amount = round(multiply(amount, currentRate.value), 2);
+  info.value.to.amount = numberRound(multiply(amount, currentRate.value));
 };
 
 const handleToAmountChange = (amount: number | null) => {
   if (amount === null) return;
   info.value.to.amount = amount;
-  info.value.from.amount = round(divide(amount, currentRate.value), 2);
+  info.value.from.amount = numberRound(divide(amount, currentRate.value));
 };
 
 watch(
   () => [info.value.from.code, info.value.to.code],
   async ([newFromCode], [oldFromCode]) => {
     newFromCode !== oldFromCode && (await onFetchRates());
-    info.value.to.amount = multiply(info.value.from.amount, currentRate.value);
+    info.value.to.amount = numberRound(
+      multiply(info.value.from.amount, currentRate.value)
+    );
   }
 );
 
