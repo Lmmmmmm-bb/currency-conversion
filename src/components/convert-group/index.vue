@@ -9,7 +9,8 @@ import {
   NInputGroup,
   NInputNumber,
   NTooltip,
-  NIcon
+  NIcon,
+  useLoadingBar
 } from 'naive-ui';
 import { useTitle } from '~/common/hooks';
 import { ISOCodeEnum } from '~/common/models';
@@ -41,7 +42,7 @@ const renderTooltipOption: RenderOption = ({ node, option }) =>
     }
   );
 
-const isLoading = ref(false);
+const loadingBar = useLoadingBar();
 const rates = ref<{ [key in ISOCodeEnum]: number }>();
 const info = ref({
   from: { code: ISOCodeEnum.CNY, amount: 100 },
@@ -51,10 +52,10 @@ const info = ref({
 const currentRate = computed(() => rates.value?.[info.value.to.code] ?? 0);
 
 const onFetchRates = async () => {
-  isLoading.value = true;
+  loadingBar.start();
   const response = await fetchLatest({ base: info.value.from.code });
   rates.value = response.rates;
-  isLoading.value = false;
+  loadingBar.finish();
 };
 
 onMounted(async () => {
@@ -124,7 +125,6 @@ const handleSwitchGroup = () => {
     </n-button>
     <n-input-group>
       <n-input-number
-        :loading="isLoading"
         :value="info.to.amount"
         size="large"
         :show-button="false"

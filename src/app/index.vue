@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { NLoadingBarProvider } from 'naive-ui';
 import { onMounted, ref } from 'vue';
 import { fetchSymbols, ISymbol } from '~/services';
 import ConvertGroup from '~/components/convert-group';
@@ -23,10 +24,12 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div :class="styles.wrapper">
-    <div :class="styles.main">
-      <convert-group :symbols="symbolList" />
+  <n-loading-bar-provider>
+    <div :class="styles.wrapper">
+      <div :class="styles.main">
+        <convert-group :symbols="symbolList" />
+      </div>
+      <external-link :class="styles.externalLink" />
     </div>
-    <external-link :class="styles.externalLink" />
-  </div>
+  </n-loading-bar-provider>
 </template>
