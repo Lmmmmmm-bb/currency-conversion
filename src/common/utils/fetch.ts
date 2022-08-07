@@ -1,6 +1,6 @@
-import { IBaseResponse } from '../models';
+import type { IBaseResponse } from '../models';
 
-const baseUrl = 'https://api.exchangerate.host';
+const BASE_URL = 'https://api.exchangerate.host';
 
 type FetchQueryType = Record<string, any>;
 
@@ -21,7 +21,7 @@ export async function getFetch<
         .join('&')}`
     : '';
 
-  const response = await fetch(`${baseUrl}${path}${queryString}`);
+  const response = await fetch(`${BASE_URL}${path}${queryString}`);
 
   return response.json();
 }

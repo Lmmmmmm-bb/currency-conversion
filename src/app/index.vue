@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { NLoadingBarProvider } from 'naive-ui';
 import { onMounted, ref } from 'vue';
+import { NLoadingBarProvider } from 'naive-ui';
 import { fetchSymbols, ISymbol } from '~/services';
 import ConvertGroup from '~/components/convert-group';
 import ExternalLink from '~/components/external-link';

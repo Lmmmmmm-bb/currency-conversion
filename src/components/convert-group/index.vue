@@ -12,17 +12,19 @@ import {
   NIcon,
   useLoadingBar
 } from 'naive-ui';
-import { useTitle, useSmallScreen } from '~/common/hooks';
 import { ISOCodeEnum } from '~/common/models';
 import { fetchLatest, ISymbol } from '~/services';
+import { useTitle, useSmallScreen } from '~/common/hooks';
 import styles from './index.module.scss';
-import { RenderOption, SelectOptionType } from './types';
+import type { RenderOption, SelectOptionType } from './types';
 
 const props = defineProps<{
   symbols: ISymbol[];
 }>();
 
 const htmlTitle = useTitle();
+const loadingBar = useLoadingBar();
+const isSmallScreen = useSmallScreen();
 
 const options = computed<SelectOptionType[]>(() =>
   props.symbols.map(({ code, description }) => ({
@@ -42,8 +44,6 @@ const renderTooltipOption: RenderOption = ({ node, option }) =>
     }
   );
 
-const loadingBar = useLoadingBar();
-const isSmallScreen = useSmallScreen();
 const rates = ref<{ [key in ISOCodeEnum]: number }>();
 const info = ref({
   from: { code: ISOCodeEnum.CNY, amount: 100 },
