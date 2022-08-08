@@ -99,7 +99,7 @@ watch(
   }
 );
 
-const selectDate = ref(dayjs().valueOf());
+const selectDate = ref(dayjs().startOf('d').valueOf());
 // record latest selected date, unfetch if date not changed
 const selectDateRef = ref(selectDate.value);
 
