@@ -29,6 +29,7 @@ const handleSelectChange = (value: ISOCodeEnum) =>
 <template>
   <n-input-group>
     <n-input-number
+      :class="styles.inputNumber"
       :value="props.inputValue"
       size="large"
       :placeholder="props.placeholder"
