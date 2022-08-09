@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "lint:check": "pnpm prettier --check .",
     "lint:format": "pnpm prettier --write .",
-    "lint:fix": "eslint --ext .tsx,.ts,.js,.vue --fix ./src --fix",
+    "lint:fix": "eslint --ext .tsx,.ts,.js,.vue --fix ./src",
     "prepare": "husky install",
     "style:watch": "pnpm typed-scss-modules src --watch --ignore \"**/index.scss\""
   },
@@ -42,7 +42,7 @@
     "vue-tsc": "^0.39.2"
   },
   "lint-staged": {
-    "**/*": "prettier --write --ignore-unknown",
+    "**/*": "prettier --write . --ignore-unknown",
     "*.{js,ts,tsx,vue}": "eslint --ext .tsx,.ts,.js,.vue --fix ./src"
   }
 }
