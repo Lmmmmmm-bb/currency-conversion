@@ -47,7 +47,7 @@ const renderTooltipOption: RenderOption = ({ node, option }) =>
     { placement: 'right', class: styles.tooltip },
     {
       trigger: () => node,
-      default: () => (<SelectOptionType>option).description
+      default: () => (option as SelectOptionType).description
     }
   );
 
