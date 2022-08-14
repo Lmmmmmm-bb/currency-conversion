@@ -16,7 +16,7 @@ import {
 } from 'naive-ui';
 import { numberRound } from '~/common/utils';
 import { ISOCodeEnum } from '~/common/models';
-import { useTitle, useSmallScreen } from '~/common/hooks';
+import { useTitle, useSmallScreen, useLocation } from '~/common/hooks';
 import { fetchHistorical, fetchLatest, ISymbol } from '~/services';
 import ConvertInputGroup, {
   RenderOption,
@@ -29,6 +29,7 @@ const props = defineProps<{ symbols: ISymbol[] }>();
 
 const message = useMessage();
 const htmlTitle = useTitle();
+const location = useLocation();
 const loadingBar = useLoadingBar();
 const isSmallScreen = useSmallScreen();
 const messageInstances = ref<MessageReactive[]>([]);
@@ -53,8 +54,8 @@ const renderTooltipOption: RenderOption = ({ node, option }) =>
 
 const rates = ref<{ [key in ISOCodeEnum]: number }>();
 const info = ref({
-  from: { code: ISOCodeEnum.CNY, amount: 100 },
-  to: { code: ISOCodeEnum.USD, amount: 0 }
+  from: { code: location.search.value.from, amount: 100 },
+  to: { code: location.search.value.to, amount: 0 }
 });
 
 const currentRate = computed(() => rates.value?.[info.value.to.code] ?? 0);
@@ -91,7 +92,8 @@ const handleSwitchGroup = () => {
 
 watch(
   () => [info.value.from.code, info.value.to.code],
-  async ([newFromCode], [oldFromCode]) => {
+  async ([newFromCode, newToCode], [oldFromCode]) => {
+    location.replace({ from: newFromCode, to: newToCode });
     newFromCode !== oldFromCode && (await onFetchRates());
     info.value.to.amount = numberRound(
       multiply(info.value.from.amount, currentRate.value)
