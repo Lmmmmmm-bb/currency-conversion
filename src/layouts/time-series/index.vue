@@ -46,6 +46,7 @@ const setupChart = async () => {
         },
         options: {
           responsive: true,
+          interaction: { mode: 'index', intersect: false },
           plugins: {
             title: {
               display: true,
@@ -62,8 +63,7 @@ const setupChart = async () => {
                 }
               }
             }
-          },
-          interaction: { mode: 'index', intersect: false }
+          }
         }
       });
     }
@@ -79,9 +79,7 @@ const handleFullScreen = () => {
       });
 };
 
-watchEffect(() => {
-  setupChart();
-});
+watchEffect(() => setupChart());
 </script>
 
 <template>
@@ -93,6 +91,6 @@ watchEffect(() => {
     >
       <canvas ref="canvasRef" />
     </div>
-    <template #description>Chart Data is Fetching...</template>
+    <template #description>Fetching Chart Data...</template>
   </n-spin>
 </template>
