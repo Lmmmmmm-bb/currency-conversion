@@ -15,9 +15,9 @@ const initLocation = (): ILocationQuery => {
   };
 };
 
+// global state
+const search = ref<ILocationQuery>(initLocation());
 export const useLocation = () => {
-  const search = ref<ILocationQuery>(initLocation());
-
   const replace = (locationQuery: ILocationQuery) => {
     const query = Object.entries(locationQuery)
       .map(([key, value]) => `${key}=${value}`)
