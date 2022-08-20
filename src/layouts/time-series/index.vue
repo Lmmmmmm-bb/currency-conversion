@@ -50,6 +50,17 @@ const setupChart = async () => {
             title: {
               display: true,
               text: `${fetchOptions.value.start_date} ~ ${fetchOptions.value.end_date} Exchagne Rate`
+            },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => {
+                  const {
+                    dataIndex,
+                    dataset: { data, label }
+                  } = ctx;
+                  return `${label} : ${data[dataIndex]}`;
+                }
+              }
             }
           },
           interaction: { mode: 'index', intersect: false }
