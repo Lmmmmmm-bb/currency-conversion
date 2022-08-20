@@ -1,0 +1,13 @@
+.wrapper {
+  position: relative;
+  max-width: 1000px;
+  width: 80vw;
+
+  &:fullscreen {
+    padding: 24px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fffdf6;
+  }
+}

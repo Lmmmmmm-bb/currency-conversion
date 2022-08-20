@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
-import { NLoadingBarProvider, NMessageProvider } from 'naive-ui';
+import { NLoadingBarProvider, NMessageProvider, NSpace } from 'naive-ui';
 import Convert from '~/layouts/convert';
+import TimeSeries from '~/layouts/time-series';
 import { fetchSymbols, ISymbol } from '~/services';
 import ExternalLink from '~/components/external-link';
 import { getLocalItem, setLocalItem, StorageKeyEnum } from '~/common/utils';
@@ -27,9 +28,10 @@ onMounted(async () => {
   <n-loading-bar-provider>
     <n-message-provider>
       <div :class="styles.wrapper">
-        <div :class="styles.main">
+        <n-space :class="styles.main" align="center" vertical>
           <convert :symbols="symbolList" />
-        </div>
+          <time-series />
+        </n-space>
         <external-link :class="styles.externalLink" />
       </div>
     </n-message-provider>

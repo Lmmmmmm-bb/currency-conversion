@@ -54,7 +54,9 @@ export interface ITimeSeriesResponse extends IBaseResponse {
    * @description Currency code to rate.
    */
   rates: {
-    [key in ISOCodeEnum]: number;
+    [key in string]: {
+      [key in ISOCodeEnum]: number;
+    };
   };
 }
 
