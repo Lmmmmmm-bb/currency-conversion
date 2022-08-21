@@ -71,15 +71,19 @@ const setupChart = async () => {
   }
 };
 
-const handleFullScreen = () => {
-  document.fullscreenElement
-    ? document.exitFullscreen()
-    : canvasWrapperRef.value?.requestFullscreen().catch(() => {
-        message.error('Failed to enter fullscreen');
-      });
-};
-
 watchEffect(() => setupChart());
+
+const handleFullScreen = () => {
+  if (!document.fullscreenEnabled) {
+    message.error('Fullscreen is not supported');
+  } else if (document.fullscreenElement) {
+    document.exitFullscreen();
+  } else {
+    canvasWrapperRef.value?.requestFullscreen().catch(() => {
+      message.error('Failed to enter fullscreen, please try later');
+    });
+  }
+};
 </script>
 
 <template>
