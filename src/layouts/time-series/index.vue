@@ -50,7 +50,7 @@ const setupChart = async () => {
           plugins: {
             title: {
               display: true,
-              text: `${fetchOptions.value.start_date} ~ ${fetchOptions.value.end_date} Exchagne Rate`
+              text: `${fetchOptions.value.start_date} ~ ${fetchOptions.value.end_date} Exchange Rate`
             },
             tooltip: {
               callbacks: {

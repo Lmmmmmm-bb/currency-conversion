@@ -177,7 +177,7 @@ watch(
         :render-option="renderTooltipOption"
         @input-change="handleFromAmountChange"
       />
-      <n-button quaternary title="Switch Gourp" @click="handleSwitchGroup">
+      <n-button quaternary title="Switch Group" @click="handleSwitchGroup">
         <template #icon>
           <n-icon
             :class="styles.icon"
