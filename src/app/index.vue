@@ -1,11 +1,17 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
-import { NLoadingBarProvider, NMessageProvider, NSpace } from 'naive-ui';
+import {
+  NSpace,
+  NConfigProvider,
+  NMessageProvider,
+  NLoadingBarProvider
+} from 'naive-ui';
 import Convert from '~/layouts/convert';
 import TimeSeries from '~/layouts/time-series';
 import { fetchSymbols, ISymbol } from '~/services';
 import ExternalLink from '~/components/external-link';
 import { getLocalItem, setLocalItem, StorageKeyEnum } from '~/common/utils';
+import { themeOverrides } from './config';
 import styles from './index.module.scss';
 
 const initSymbolList = getLocalItem(StorageKeyEnum.Symbols);
@@ -25,15 +31,17 @@ onMounted(async () => {
 </script>
 
 <template>
-  <n-loading-bar-provider>
-    <n-message-provider>
-      <div :class="styles.wrapper">
-        <n-space :class="styles.main" align="center" vertical>
-          <convert :symbols="symbolList" />
-          <time-series />
-        </n-space>
-        <external-link :class="styles.externalLink" />
-      </div>
-    </n-message-provider>
-  </n-loading-bar-provider>
+  <n-config-provider :theme-overrides="themeOverrides" style="height: 100%">
+    <n-loading-bar-provider>
+      <n-message-provider>
+        <div :class="styles.wrapper">
+          <n-space :class="styles.main" align="center" vertical>
+            <convert :symbols="symbolList" />
+            <time-series />
+          </n-space>
+          <external-link :class="styles.externalLink" />
+        </div>
+      </n-message-provider>
+    </n-loading-bar-provider>
+  </n-config-provider>
 </template>
