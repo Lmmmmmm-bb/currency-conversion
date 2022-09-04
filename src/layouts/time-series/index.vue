@@ -29,6 +29,7 @@ const setupChart = async () => {
     isSpinning.value = true;
     const { rates } = await fetchTimeSeries(fetchOptions.value);
     const chartData = transformChartData(rates);
+    // chartRef exist then update config & data
     if (chartRef.value) {
       chartRef.value.data.datasets[0].data = chartData.data;
       chartRef.value.data.datasets[0].label = `${location.search.value.from} to ${location.search.value.to}`;
@@ -51,7 +52,8 @@ const setupChart = async () => {
               label: `${location.search.value.from} to ${location.search.value.to}`,
               data: chartData.data,
               borderColor: '#6e91aa',
-              backgroundColor: '#6e91aa'
+              backgroundColor: '#6e91aa',
+              pointRadius: 0
             }
           ]
         },
