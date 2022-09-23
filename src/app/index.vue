@@ -35,7 +35,7 @@ onMounted(async () => {
     <n-loading-bar-provider>
       <n-message-provider>
         <div :class="styles.wrapper">
-          <n-space :class="styles.main" align="center" vertical>
+          <n-space :class="styles.main" align="center" vertical size="large">
             <convert :symbols="symbolList" />
             <time-series />
           </n-space>
