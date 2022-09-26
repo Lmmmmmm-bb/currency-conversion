@@ -5,7 +5,7 @@
 [![Build and Deploy](https://github.com/Lmmmmmm-bb/currency-conversion/actions/workflows/deploy.yml/badge.svg)](https://github.com/Lmmmmmm-bb/currency-conversion/actions/workflows/deploy.yml)
 [![GitHub license](https://img.shields.io/github/license/Lmmmmmm-bb/currency-conversion)](https://github.com/Lmmmmmm-bb/currency-conversion/blob/main/LICENSE)
 
-**[Currency Convert](https://convert.lmmmmmm.dev)**, Help you convert, power by vue, conversion information provided by **[exchangerate.host](https://exchangerate.host)**.
+**[Currency Convert](https://convert.lmmmmmm.dev)**, Help you convert, powered by vue, conversion information provided by **[exchangerate.host](https://exchangerate.host)**.
 
 # Motivate
 
