@@ -15,7 +15,9 @@
     "no-extend-native": "error",
     "no-var": "error",
     "@typescript-eslint/no-explicit-any": "off",
-    "no-console": "warn"
+    "no-console": "warn",
+    "arrow-body-style": "error",
+    "prefer-template": "error"
   },
   "parser": "vue-eslint-parser",
   "parserOptions": {
