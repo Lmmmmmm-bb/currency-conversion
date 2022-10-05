@@ -24,7 +24,7 @@ specifiers:
   typed-scss-modules: ^6.5.0
   typescript: ^4.7.4
   vite: ^3.0.9
-  vite-plugin-open-graph: ^1.1.3
+  vite-plugin-open-graph: ^1.1.4
   vue: ^3.2.37
   vue-tsc: ^0.40.1
 
@@ -55,7 +55,7 @@ devDependencies:
   typed-scss-modules: registry.npmmirror.com/typed-scss-modules/6.5.0_sass@1.54.5
   typescript: 4.7.4
   vite: 3.0.9_sass@1.54.5
-  vite-plugin-open-graph: 1.1.3
+  vite-plugin-open-graph: 1.1.4
   vue-tsc: 0.40.1_typescript@4.7.4
 
 packages:
@@ -3169,8 +3169,8 @@ packages:
       vue: 3.2.37
     dev: true
 
-  /vite-plugin-open-graph/1.1.3:
-    resolution: {integrity: sha512-N0NKLOWFopMDscFYK0LAcHc8PlFmI409axhJ1Pr5Qq211IUwkWQjvD6vTiMDfaBWljRN9cD9FX0IeUQSfnnw8w==}
+  /vite-plugin-open-graph/1.1.4:
+    resolution: {integrity: sha512-gf7hNBDFaXGoWtORLil814Xo73PWISU4UetLxHeFBFIX4/ll3IWgf/RBMmt3+WunTo9FKXDJ4MukJRrnL8NKow==}
     dev: true
 
   /vite/3.0.9_sass@1.54.5:

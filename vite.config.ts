@@ -5,6 +5,7 @@ import ogPlugin, { Options } from 'vite-plugin-open-graph';
 
 const ogOptions: Options = {
   basic: {
+    type: 'website',
     title: 'Currency Conversion',
     url: 'https://convert.lmmmmmm.dev',
     description:
