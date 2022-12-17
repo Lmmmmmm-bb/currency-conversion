@@ -7,10 +7,10 @@
 
 **[Currency Convert](https://convert.lmmmmmm.dev)**, help you convert, powered by vue, conversion information provided by **[exchangerate.host](https://exchangerate.host)**.
 
-# Motivate
+## Motivate
 
 Sometimes when I need to convert an exchange rate, I have to search Google for an exchange rate conversion service every time.
 
-I need to find reliable websites without ads and this takes me a lot of time. But I need a conversion service, I don't need any other features.
+I need to find reliable websites **without ads** and this takes me a lot of time. But I need a conversion service, I don't need any other features.
 
 So I made this simple exchange rate conversion site, just for conversions.
