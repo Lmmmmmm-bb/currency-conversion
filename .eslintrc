@@ -17,7 +17,8 @@
     "@typescript-eslint/no-explicit-any": "off",
     "no-console": "warn",
     "arrow-body-style": "error",
-    "prefer-template": "error"
+    "prefer-template": "error",
+    "no-tabs": "error"
   },
   "parser": "vue-eslint-parser",
   "parserOptions": {
