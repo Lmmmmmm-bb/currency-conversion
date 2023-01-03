@@ -1,18 +1,21 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
 import {
   NSpace,
   NConfigProvider,
   NMessageProvider,
   NLoadingBarProvider
 } from 'naive-ui';
+import { onMounted, ref } from 'vue';
 import Convert from '~/layouts/convert';
 import TimeSeries from '~/layouts/time-series';
 import { fetchSymbols, ISymbol } from '~/services';
 import ExternalLink from '~/components/external-link';
+import ShareLink from '~/components/share-link';
 import { getLocalItem, setLocalItem, StorageKeyEnum } from '~/common/utils';
 import { themeOverrides } from './config';
 import styles from './index.module.scss';
+
+const canShare = !!navigator.share;
 
 const initSymbolList = getLocalItem(StorageKeyEnum.Symbols);
 
@@ -39,7 +42,10 @@ onMounted(async () => {
             <convert :symbols="symbolList" />
             <time-series />
           </n-space>
-          <external-link :class="styles.externalLink" />
+          <n-space :class="styles.externalLinkWrapper">
+            <external-link />
+            <share-link v-if="canShare" />
+          </n-space>
         </div>
       </n-message-provider>
     </n-loading-bar-provider>
