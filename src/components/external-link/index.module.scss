@@ -1,10 +1,8 @@
-.wrapper {
-  .logo {
-    color: #3c3c3cb3;
-    cursor: pointer;
-    transition: color 0.3s ease-in-out;
-    &:hover {
-      color: #171515;
-    }
+.logo {
+  color: #3c3c3cb3;
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+  &:hover {
+    color: #171515;
   }
 }
