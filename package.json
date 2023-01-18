@@ -12,6 +12,7 @@
     "style:watch": "pnpm typed-scss-modules src --watch --ignore \"**/index.scss\""
   },
   "dependencies": {
+    "@vercel/analytics": "^0.1.8",
     "chart.js": "^4.1.1",
     "dayjs": "^1.11.7",
     "mathjs": "^11.5.0",
