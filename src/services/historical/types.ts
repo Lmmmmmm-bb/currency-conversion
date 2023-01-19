@@ -2,6 +2,7 @@ import {
   IBaseOptions,
   IBaseResponse,
   ISOCodeEnum,
+  ISOCodeType,
   OmitResponse
 } from '~/common/models';
 
@@ -35,9 +36,7 @@ export interface IHistoricalResponse extends IBaseResponse {
    * @type {Record<ISOCodeEnum, number>}
    * @description Currency code to rate.
    */
-  rates: {
-    [key in ISOCodeEnum]: number;
-  };
+  rates: ISOCodeType;
 }
 
 export type Response = OmitResponse<IHistoricalResponse>;

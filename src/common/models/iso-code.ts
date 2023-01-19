@@ -175,3 +175,7 @@ export enum ISOCodeEnum {
   ZMW = 'ZMW',
   ZWL = 'ZWL'
 }
+
+export type ISOCodeType = {
+  [key in ISOCodeEnum]: number;
+};

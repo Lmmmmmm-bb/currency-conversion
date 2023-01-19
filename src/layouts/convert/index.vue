@@ -15,7 +15,7 @@ import {
   MessageReactive
 } from 'naive-ui';
 import { numberRound } from '~/common/utils';
-import { ISOCodeEnum } from '~/common/models';
+import { ISOCodeType } from '~/common/models';
 import { useTitle, useSmallScreen, useLocation } from '~/common/hooks';
 import { fetchHistorical, fetchLatest, ISymbol } from '~/services';
 import ConvertInputGroup, {
@@ -52,7 +52,7 @@ const renderTooltipOption: RenderOption = ({ node, option }) =>
     }
   );
 
-const rates = ref<{ [key in ISOCodeEnum]: number }>();
+const rates = ref<ISOCodeType>();
 const info = ref({
   from: { code: location.search.value.from, amount: 100 },
   to: { code: location.search.value.to, amount: 0 }

@@ -2,6 +2,7 @@ import {
   IBaseOptions,
   IBaseResponse,
   ISOCodeEnum,
+  ISOCodeType,
   OmitResponse
 } from '~/common/models';
 
@@ -54,9 +55,7 @@ export interface ITimeSeriesResponse extends IBaseResponse {
    * @description Currency code to rate.
    */
   rates: {
-    [key in string]: {
-      [key in ISOCodeEnum]: number;
-    };
+    [key in string]: ISOCodeType;
   };
 }
 
