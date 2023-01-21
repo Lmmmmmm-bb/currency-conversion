@@ -1,6 +1,6 @@
 {
   "name": "currency-conversion",
-  "packageManager": "pnpm@7.22.0",
+  "packageManager": "pnpm@7.25.1",
   "scripts": {
     "dev": "vite --host & npm run style:watch",
     "build": "vue-tsc --noEmit && vite build",
