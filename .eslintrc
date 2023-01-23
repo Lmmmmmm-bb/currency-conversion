@@ -18,7 +18,18 @@
     "no-console": "warn",
     "arrow-body-style": "error",
     "prefer-template": "error",
-    "no-tabs": "error"
+    "no-tabs": "error",
+    "no-multiple-empty-lines": [
+      "error",
+      { "max": 1, "maxBOF": 0, "maxEOF": 0 }
+    ],
+    "vue/padding-line-between-blocks": ["error", "always"],
+    "vue/component-tags-order": [
+      "error",
+      {
+        "order": ["script", "template", "style"]
+      }
+    ]
   },
   "parser": "vue-eslint-parser",
   "parserOptions": {
