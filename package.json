@@ -2,14 +2,14 @@
   "name": "currency-conversion",
   "packageManager": "pnpm@7.22.0",
   "scripts": {
-    "dev": "vite --host & pnpm style:watch",
+    "dev": "vite --host & npm run style:watch",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
-    "lint:check": "pnpm prettier --check .",
-    "lint:format": "pnpm prettier --write .",
+    "lint:check": "prettier --check .",
+    "lint:format": "prettier --write .",
     "lint:fix": "eslint --ext .tsx,.ts,.js,.vue --fix ./src",
     "prepare": "husky install",
-    "style:watch": "pnpm typed-scss-modules src --watch --ignore \"**/index.scss\""
+    "style:watch": "typed-scss-modules src --watch --ignore \"**/index.scss\""
   },
   "dependencies": {
     "@vercel/analytics": "^0.1.8",
