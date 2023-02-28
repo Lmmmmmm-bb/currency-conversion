@@ -1,9 +1,9 @@
-import {
+import type {
   IBaseOptions,
   IBaseResponse,
   ISOCodeEnum,
   ISOCodeType,
-  OmitResponse
+  OmitResponse,
 } from '~/common/models';
 
 export interface ITimeSeriesOptions extends IBaseOptions {

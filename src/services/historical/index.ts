@@ -1,9 +1,9 @@
-import { getFetch } from '~/common/utils';
 import type {
   HistoricalOptionsType,
   IHistoricalResponse,
-  Response
+  Response,
 } from './types';
+import { getFetch } from '~/common/utils';
 
 /**
  * Historical Currency Exchange Rate Service
@@ -13,11 +13,11 @@ import type {
  */
 export const fetchHistorical = async (
   path: string,
-  options?: HistoricalOptionsType
+  options?: HistoricalOptionsType,
 ): Promise<Response> => {
   const response = await getFetch<HistoricalOptionsType, IHistoricalResponse>(
     `/${path}`,
-    options
+    options,
   );
   const { success, base, date, historical, rates } = response;
   return { success, base, date, historical, rates };

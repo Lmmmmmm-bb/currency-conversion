@@ -1,17 +1,17 @@
-import { getFetch } from '~/common/utils';
 import type {
-  ISymbolsResponse,
-  ISymbolsOptions,
   ISymbol,
-  Response
+  ISymbolsOptions,
+  ISymbolsResponse,
+  Response,
 } from './types';
+import { getFetch } from '~/common/utils';
 
 export const fetchSymbols = async (
-  options?: ISymbolsOptions
+  options?: ISymbolsOptions,
 ): Promise<Response> => {
   const response = await getFetch<ISymbolsOptions, ISymbolsResponse>(
     '/symbols',
-    options
+    options,
   );
   const { success, symbols } = response;
   return { success, symbols };

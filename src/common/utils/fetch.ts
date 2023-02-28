@@ -12,10 +12,10 @@ type FetchQueryType = Record<string, any>;
  */
 export const getFetch = async <
   T extends FetchQueryType,
-  R extends IBaseResponse = IBaseResponse
+  R extends IBaseResponse = IBaseResponse,
 >(
   path: string,
-  query?: T
+  query?: T,
 ): Promise<R> => {
   // concat query string
   const queryString = query

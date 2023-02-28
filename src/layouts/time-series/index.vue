@@ -2,13 +2,14 @@
 import dayjs from 'dayjs';
 import Chart from 'chart.js/auto';
 import { computed, ref, shallowRef, watchEffect } from 'vue';
-import { NSpin, NSpace, NRadioGroup, NRadioButton, useMessage } from 'naive-ui';
-import { useLocation } from '~/common/hooks';
-import { fetchTimeSeries, ITimeSeriesOptions } from '~/services';
+import { NRadioButton, NRadioGroup, NSpace, NSpin, useMessage } from 'naive-ui';
 import styles from './index.module.scss';
 import { radioConfig } from './config';
 import { ChartRangeEnum } from './types';
 import { transformChartData } from './utils';
+import { fetchTimeSeries } from '~/services';
+import type { ITimeSeriesOptions } from '~/services';
+import { useLocation } from '~/common/hooks';
 
 const message = useMessage();
 const location = useLocation();
@@ -21,7 +22,7 @@ const fetchOptions = computed<ITimeSeriesOptions>(() => ({
   base: location.search.value.from,
   symbols: location.search.value.to,
   start_date: dayjs().subtract(selectedRange.value, 'd').format('YYYY-MM-DD'),
-  end_date: dayjs().format('YYYY-MM-DD')
+  end_date: dayjs().format('YYYY-MM-DD'),
 }));
 
 const setupChart = async () => {
@@ -35,8 +36,8 @@ const setupChart = async () => {
       chartRef.value.data.datasets[0].label = `${location.search.value.from} to ${location.search.value.to}`;
       chartRef.value.data.labels = chartData.labels;
       if (
-        chartRef.value.options.plugins &&
-        chartRef.value.options.plugins.title
+        chartRef.value.options.plugins
+        && chartRef.value.options.plugins.title
       ) {
         chartRef.value.options.plugins.title.text = `${fetchOptions.value.start_date} ~ ${fetchOptions.value.end_date} Exchange Rate`;
       }
@@ -53,9 +54,9 @@ const setupChart = async () => {
               data: chartData.data,
               borderColor: '#6e91aa',
               backgroundColor: '#6e91aa',
-              pointRadius: 0
-            }
-          ]
+              pointRadius: 0,
+            },
+          ],
         },
         options: {
           responsive: true,
@@ -63,21 +64,21 @@ const setupChart = async () => {
           plugins: {
             title: {
               display: true,
-              text: `${fetchOptions.value.start_date} ~ ${fetchOptions.value.end_date} Exchange Rate`
+              text: `${fetchOptions.value.start_date} ~ ${fetchOptions.value.end_date} Exchange Rate`,
             },
             tooltip: {
               callbacks: {
                 label: (ctx) => {
                   const {
                     dataIndex,
-                    dataset: { data, label }
+                    dataset: { data, label },
                   } = ctx;
                   return `${label} : ${data[dataIndex]}`;
-                }
-              }
-            }
-          }
-        }
+                },
+              },
+            },
+          },
+        },
       });
     }
     isSpinning.value = false;
@@ -100,18 +101,18 @@ const handleFullScreen = () => {
 </script>
 
 <template>
-  <n-space vertical align="center">
-    <n-radio-group v-model:value="selectedRange" size="small">
-      <n-radio-button
+  <NSpace vertical align="center">
+    <NRadioGroup v-model:value="selectedRange" size="small">
+      <NRadioButton
         v-for="radio in radioConfig"
         :key="radio.value"
         :value="radio.value"
         :title="radio.title"
       >
         {{ radio.label }}
-      </n-radio-button>
-    </n-radio-group>
-    <n-spin :show="isSpinning">
+      </NRadioButton>
+    </NRadioGroup>
+    <NSpin :show="isSpinning">
       <div
         ref="canvasWrapperRef"
         :class="styles.wrapper"
@@ -119,7 +120,9 @@ const handleFullScreen = () => {
       >
         <canvas ref="canvasRef" />
       </div>
-      <template #description>Fetching Chart Data...</template>
-    </n-spin>
-  </n-space>
+      <template #description>
+        Fetching Chart Data...
+      </template>
+    </NSpin>
+  </NSpace>
 </template>

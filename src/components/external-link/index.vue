@@ -13,8 +13,8 @@ const GITHUB_REPO_LINK = 'https://github.com/Lmmmmmm-bb/currency-conversion/';
     :class="styles.logo"
     :href="GITHUB_REPO_LINK"
   >
-    <n-icon :size="24">
-      <logo-github />
-    </n-icon>
+    <NIcon :size="24">
+      <LogoGithub />
+    </NIcon>
   </a>
 </template>

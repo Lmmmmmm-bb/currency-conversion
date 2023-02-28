@@ -1,25 +1,25 @@
-import { ISOCodeEnum } from '~/common/models';
-import { getFetch } from '~/common/utils';
 import type {
   FluctuationOptionsType,
   ICamelCaseRateInfo,
   IFluctuationResponse,
-  Response
+  Response,
 } from './types';
+import type { ISOCodeEnum } from '~/common/models';
+import { getFetch } from '~/common/utils';
 
 export const fetchFluctuation = async (
-  options: FluctuationOptionsType
+  options: FluctuationOptionsType,
 ): Promise<Response> => {
   const response = await getFetch<FluctuationOptionsType, IFluctuationResponse>(
     '/fluctuation',
-    options
+    options,
   );
   const {
     success,
     fluctuation,
     start_date: startDate,
     end_date: endDate,
-    rate
+    rate,
   } = response;
 
   // transform under score case to camel case
@@ -29,8 +29,8 @@ export const fetchFluctuation = async (
     _rate[key] = {
       startRate: start_rate,
       endRate: end_rate,
-      change: change,
-      changePct: change_pct
+      change,
+      changePct: change_pct,
     };
   });
 
@@ -40,5 +40,5 @@ export const fetchFluctuation = async (
 export {
   FluctuationOptionsType,
   Response as IFluctuationResponse,
-  ICamelCaseRateInfo as IRateInfo
+  ICamelCaseRateInfo as IRateInfo,
 };

@@ -5,7 +5,7 @@ export const radioConfig = [
   {
     label: 'Quarter',
     value: ChartRangeEnum.Quarter,
-    title: 'Chart of Quarter'
+    title: 'Chart of Quarter',
   },
-  { label: 'Year', value: ChartRangeEnum.Year, title: 'Chart of Year' }
+  { label: 'Year', value: ChartRangeEnum.Year, title: 'Chart of Year' },
 ];

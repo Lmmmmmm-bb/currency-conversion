@@ -1,5 +1,5 @@
-import { IBaseResponse, ISOCodeEnum, OmitResponse } from '~/common/models';
-import { ITimeSeriesOptions } from '..';
+import type { ITimeSeriesOptions } from '..';
+import type { IBaseResponse, ISOCodeEnum, OmitResponse } from '~/common/models';
 
 /**
  * @see IBaseOptions detail
