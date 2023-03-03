@@ -173,7 +173,7 @@ export enum ISOCodeEnum {
   YER = 'YER',
   ZAR = 'ZAR',
   ZMW = 'ZMW',
-  ZWL = 'ZWL'
+  ZWL = 'ZWL',
 }
 
 export type ISOCodeType = {

@@ -1,8 +1,8 @@
-import {
+import type {
   FormatType,
   IBaseResponse,
   ISOCodeEnum,
-  OmitResponse
+  OmitResponse,
 } from '~/common/models';
 
 export interface ISymbol {

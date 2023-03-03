@@ -12,7 +12,7 @@ export const useTitle = (title?: string) => {
     (newTitle) => {
       document.title = newTitle;
     },
-    { immediate: true }
+    { immediate: true },
   );
   return htmlTitle;
 };

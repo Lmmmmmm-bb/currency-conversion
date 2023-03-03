@@ -1,12 +1,12 @@
-import { getFetch } from '~/common/utils';
 import type { ITimeSeriesOptions, ITimeSeriesResponse, Response } from './type';
+import { getFetch } from '~/common/utils';
 
 export const fetchTimeSeries = async (
-  options: ITimeSeriesOptions
+  options: ITimeSeriesOptions,
 ): Promise<Response> => {
   const response = await getFetch<ITimeSeriesOptions, ITimeSeriesResponse>(
     '/timeseries',
-    options
+    options,
   );
   const {
     success,
@@ -14,7 +14,7 @@ export const fetchTimeSeries = async (
     base,
     start_date: startDate,
     end_date: endDate,
-    rates
+    rates,
   } = response;
   return { success, timeseries, base, startDate, endDate, rates };
 };

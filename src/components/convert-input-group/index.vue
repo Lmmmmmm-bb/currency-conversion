@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { NInputGroup, NInputNumber, NSelect } from 'naive-ui';
-import { ISOCodeEnum } from '~/common/models';
 import styles from './index.module.scss';
-import { RenderOption, SelectOptionType } from './types';
+import type { RenderOption, SelectOptionType } from './types';
+import type { ISOCodeEnum } from '~/common/models';
 
 const props = withDefaults(
   defineProps<{
@@ -12,7 +12,7 @@ const props = withDefaults(
     renderOption: RenderOption;
     placeholder?: string;
   }>(),
-  { placeholder: '' }
+  { placeholder: '' },
 );
 
 const emits = defineEmits<{
@@ -27,8 +27,8 @@ const handleSelectChange = (value: ISOCodeEnum) =>
 </script>
 
 <template>
-  <n-input-group>
-    <n-input-number
+  <NInputGroup>
+    <NInputNumber
       :class="styles.inputNumber"
       :value="props.inputValue"
       size="large"
@@ -36,7 +36,7 @@ const handleSelectChange = (value: ISOCodeEnum) =>
       :show-button="false"
       @update:value="handleInputChange"
     />
-    <n-select
+    <NSelect
       :class="styles.selector"
       :value="props.select"
       :options="props.options"
@@ -45,5 +45,5 @@ const handleSelectChange = (value: ISOCodeEnum) =>
       :render-option="props.renderOption"
       @update:value="handleSelectChange"
     />
-  </n-input-group>
+  </NInputGroup>
 </template>

@@ -1,4 +1,4 @@
-import { ISOCodeEnum } from '.';
+import type { ISOCodeEnum } from '.';
 
 export type FormatType = 'xml' | 'csv' | 'tsv';
 

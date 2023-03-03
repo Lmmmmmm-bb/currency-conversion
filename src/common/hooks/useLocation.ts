@@ -1,5 +1,6 @@
 import { onMounted, ref } from 'vue';
-import { ILocationQuery, ISOCodeEnum } from '../models';
+import type { ILocationQuery } from '../models';
+import { ISOCodeEnum } from '../models';
 
 /**
  * init location query
@@ -11,7 +12,7 @@ const initLocation = (): ILocationQuery => {
   const to = query.get('to')?.toUpperCase() ?? ISOCodeEnum.USD;
   return {
     from: ISOCodeEnum[from] ?? ISOCodeEnum.CNY,
-    to: ISOCodeEnum[to] ?? ISOCodeEnum.USD
+    to: ISOCodeEnum[to] ?? ISOCodeEnum.USD,
   };
 };
 

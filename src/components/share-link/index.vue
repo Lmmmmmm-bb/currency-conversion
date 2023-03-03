@@ -8,7 +8,7 @@ const handleShare = () => {
     navigator.share({
       title: 'Currency Conversion',
       text: 'Help you convert, powered by vue, conversion information provided by exchangerate.host.',
-      url: 'https://convert.lmmmmmm.dev/'
+      url: 'https://convert.lmmmmmm.dev/',
     });
   }
 };
@@ -16,8 +16,8 @@ const handleShare = () => {
 
 <template>
   <a title="Share" :class="styles.logo" @click="handleShare">
-    <n-icon :size="23">
-      <share />
-    </n-icon>
+    <NIcon :size="23">
+      <Share />
+    </NIcon>
   </a>
 </template>

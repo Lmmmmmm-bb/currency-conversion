@@ -1,8 +1,8 @@
-import {
+import type {
   IBaseOptions,
   IBaseResponse,
   ISOCodeEnum,
-  OmitResponse
+  OmitResponse,
 } from '~/common/models';
 
 /**
@@ -23,11 +23,11 @@ export interface IConvertOptions extends IBaseOptions {
   to: ISOCodeEnum;
 }
 
-export type ConvertQueryType = {
+export interface ConvertQueryType {
   from: ISOCodeEnum;
   to: ISOCodeEnum;
   amount: number;
-};
+}
 
 export interface IConvertResponse extends IBaseResponse {
   /**

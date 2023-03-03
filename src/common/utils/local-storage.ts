@@ -1,5 +1,5 @@
 export enum StorageKeyEnum {
-  Symbols = 'X_CURRENCY_SYMBOLS'
+  Symbols = 'X_CURRENCY_SYMBOLS',
 }
 
 /**

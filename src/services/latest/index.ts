@@ -1,12 +1,12 @@
+import type { ILatestResponse, LatestOptionsType, Response } from './types';
 import { getFetch } from '~/common/utils';
-import type { LatestOptionsType, ILatestResponse, Response } from './types';
 
 export const fetchLatest = async (
-  options?: LatestOptionsType
+  options?: LatestOptionsType,
 ): Promise<Response> => {
   const response = await getFetch<LatestOptionsType, ILatestResponse>(
     '/latest',
-    options
+    options,
   );
   const { success, base, date, rates } = response;
   return { success, base, date, rates };
