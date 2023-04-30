@@ -1,5 +1,5 @@
-import { ChartRangeEnum } from './types';
 import type { ISOCodeType } from '~/common/models';
+import { ChartRangeEnum } from './types';
 
 export const transformChartData = (rates: {
   [key in string]: ISOCodeType;

@@ -1,5 +1,5 @@
-import type { ITimeSeriesOptions, ITimeSeriesResponse, Response } from './type';
 import { getFetch } from '~/common/utils';
+import type { ITimeSeriesOptions, ITimeSeriesResponse, Response } from './type';
 
 export const fetchTimeSeries = async (
   options: ITimeSeriesOptions,

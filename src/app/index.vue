@@ -6,8 +6,6 @@ import {
   NSpace,
 } from 'naive-ui';
 import { onMounted, ref } from 'vue';
-import { themeOverrides } from './config';
-import styles from './index.module.scss';
 import Convert from '~/layouts/convert';
 import TimeSeries from '~/layouts/time-series';
 import type { ISymbol } from '~/services';
@@ -15,6 +13,8 @@ import { fetchSymbols } from '~/services';
 import ExternalLink from '~/components/external-link';
 import ShareLink from '~/components/share-link';
 import { StorageKeyEnum, getLocalItem, setLocalItem } from '~/common/utils';
+import styles from './index.module.scss';
+import { themeOverrides } from './config';
 
 const canShare = !!navigator.share;
 

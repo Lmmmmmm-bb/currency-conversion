@@ -1,9 +1,9 @@
+import { getFetch } from '~/common/utils';
 import type {
   HistoricalOptionsType,
   IHistoricalResponse,
   Response,
 } from './types';
-import { getFetch } from '~/common/utils';
 
 /**
  * Historical Currency Exchange Rate Service

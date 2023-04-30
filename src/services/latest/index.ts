@@ -1,5 +1,5 @@
-import type { ILatestResponse, LatestOptionsType, Response } from './types';
 import { getFetch } from '~/common/utils';
+import type { ILatestResponse, LatestOptionsType, Response } from './types';
 
 export const fetchLatest = async (
   options?: LatestOptionsType,

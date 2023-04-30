@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { NInputGroup, NInputNumber, NSelect } from 'naive-ui';
+import type { ISOCodeEnum } from '~/common/models';
 import styles from './index.module.scss';
 import type { RenderOption, SelectOptionType } from './types';
-import type { ISOCodeEnum } from '~/common/models';
 
 const props = withDefaults(
   defineProps<{

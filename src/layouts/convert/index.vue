@@ -14,8 +14,6 @@ import {
   useLoadingBar,
   useMessage,
 } from 'naive-ui';
-import styles from './index.module.scss';
-import { disablePreviousDate } from './utils';
 import { numberRound } from '~/common/utils';
 import type { ISOCodeType } from '~/common/models';
 import { useLocation, useSmallScreen, useTitle } from '~/common/hooks';
@@ -26,6 +24,8 @@ import type {
   SelectOptionType,
 } from '~/components/convert-input-group';
 import ConvertInputGroup from '~/components/convert-input-group';
+import { disablePreviousDate } from './utils';
+import styles from './index.module.scss';
 
 const props = defineProps<{ symbols: ISymbol[] }>();
 

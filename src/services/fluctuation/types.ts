@@ -1,5 +1,5 @@
-import type { ITimeSeriesOptions } from '..';
 import type { IBaseResponse, ISOCodeEnum, OmitResponse } from '~/common/models';
+import type { ITimeSeriesOptions } from '..';
 
 /**
  * @see IBaseOptions detail

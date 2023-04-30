@@ -1,11 +1,11 @@
+import type { ISOCodeEnum } from '~/common/models';
+import { getFetch } from '~/common/utils';
 import type {
   FluctuationOptionsType,
   ICamelCaseRateInfo,
   IFluctuationResponse,
   Response,
 } from './types';
-import type { ISOCodeEnum } from '~/common/models';
-import { getFetch } from '~/common/utils';
 
 export const fetchFluctuation = async (
   options: FluctuationOptionsType,

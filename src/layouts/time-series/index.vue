@@ -3,13 +3,13 @@ import dayjs from 'dayjs';
 import Chart from 'chart.js/auto';
 import { computed, ref, shallowRef, watchEffect } from 'vue';
 import { NRadioButton, NRadioGroup, NSpace, NSpin, useMessage } from 'naive-ui';
+import { fetchTimeSeries } from '~/services';
+import type { ITimeSeriesOptions } from '~/services';
+import { useLocation } from '~/common/hooks';
 import styles from './index.module.scss';
 import { radioConfig } from './config';
 import { ChartRangeEnum } from './types';
 import { transformChartData } from './utils';
-import { fetchTimeSeries } from '~/services';
-import type { ITimeSeriesOptions } from '~/services';
-import { useLocation } from '~/common/hooks';
 
 const message = useMessage();
 const location = useLocation();
