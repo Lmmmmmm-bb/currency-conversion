@@ -30,7 +30,8 @@ export default defineConfig({
     visualizer({
       open: true,
       filename: './dist/visualizer.html',
-    })],
+    }),
+  ],
   resolve: {
     alias: {
       '~': resolve(__dirname, 'src'),
